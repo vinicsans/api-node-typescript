@@ -1,12 +1,13 @@
 import { RequestHandler } from 'express'
-import { Schema, ValidationError } from 'yup'
+import { ObjectSchema, ValidationError, Maybe, AnyObject } from 'yup'
 import { StatusCodes } from 'http-status-codes'
 
 type TProperty = 'body' | 'header' | 'params' | 'query'
 
-type TGetSchema = <T>(schema: Schema<T>) => Schema<T>
+type TGetSchema = <T extends Maybe<AnyObject>>(schema: ObjectSchema<T>) => ObjectSchema<T>
 
-type TAllSchemas = Record<TProperty, Schema<unknown>>
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type TAllSchemas = Record<TProperty, ObjectSchema<any>>
 
 type TGetAllSchemas = (getSchema: TGetSchema) => Partial<TAllSchemas>
 
