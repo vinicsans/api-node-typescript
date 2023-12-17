@@ -1,14 +1,13 @@
 import { Router } from 'express'
-import { StatusCodes } from 'http-status-codes'
+
+import { CitiesController } from './../controllers'
 
 const router = Router()
 
-router.get('/', (request, response) => {
-  return response.send('hello, world ;)')
+router.get('/', (_, response) => {
+  return response.send('O servidor está funcionando.')
 })
 
-router.post('/test', (request, response) => {
-  return response.status(StatusCodes.UNAUTHORIZED).json(request.body)
-})
+router.post('/cities', CitiesController.createValidation, CitiesController.create)
 
 export default router
