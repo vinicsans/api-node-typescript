@@ -1,6 +1,6 @@
-import { server } from './server/Server'
-import 'dotenv/config'
+import { server } from './server/Server';
 
-server.listen(process.env.PORT, () => {
-  console.log(`Servidor HTTP funcionando em: http://localhost:${process.env.PORT}`)
-})
+
+server.listen(process.env.PORT || 3333, () => {
+  console.log(`App rodando na porta ${process.env.PORT || 3333}`);
+});
